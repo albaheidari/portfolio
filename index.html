@@ -1,171 +1,183 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alba Heidari</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #111;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .background-video-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-        .background-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: blur(10px) brightness(40%) contrast(110%) saturate(130%);
-        }
-        .container {
-            max-width: 900px;
-            padding: 50px 20px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            flex: 1;
-        }
-        h1, h2, p, ul {
-            text-align: center;
-        }
-        a {
-            color: #ffcc00;
-            text-decoration: none;
-        }
-        a:hover {
-            color: white;
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .logo {
-            width: 50px;
-            margin-right: 5px;
-        }
-        .logo-container h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-        footer {
-            background-color: #222;
-            color: #fff;
-            padding: 40px;
-            text-align: center;
-            margin-top: auto;
-        }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        #toggleSound {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255,255,255,0.3);
-            color: black;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            z-index: 2;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let elements = document.querySelectorAll(".fade-in");
-            elements.forEach(function(element) {
-                element.classList.add("visible");
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Alba Heidari</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                background-color: #111;
+                color: white;
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .background-video-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                z-index: -1;
+            }
+            .background-video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: blur(10px) brightness(40%) contrast(110%) saturate(130%);
+            }
+            .container {
+                max-width: 900px;
+                padding: 50px 20px;
+                text-align: center;
+                position: relative;
+                z-index: 1;
+                flex: 1;
+            }
+            h1, h2, p, ul {
+                text-align: center;
+            }
+            a {
+                color: #ffcc00;
+                text-decoration: none;
+            }
+            a:hover {
+                color: white;
+            }
+            .logo-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            .logo {
+                width: 50px;
+                margin-right: 5px;
+            }
+            .logo-container h1 {
+                margin: 0;
+                font-size: 2rem;
+            }
+            footer {
+                background-color: #222;
+                color: #fff;
+                padding: 40px;
+                text-align: center;
+                margin-top: auto;
+            }
+            .fade-in {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 1s ease-out, transform 1s ease-out;
+            }
+            .fade-in.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            #toggleSound {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: rgba(255,255,255,0.3);
+                color: black;
+                padding: 10px;
+                border: none;
+                cursor: pointer;
+                z-index: 2;
+            }
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                let elements = document.querySelectorAll(".fade-in");
+                elements.forEach(function(element) {
+                    element.classList.add("visible");
+                });
+                
+                let video = document.getElementById("bgVideo");
+                let soundButton = document.getElementById("toggleSound");
+                
+                soundButton.addEventListener("click", function() {
+                    if (video.muted) {
+                        video.muted = false;
+                        video.volume = 0.5;
+                        soundButton.textContent = "🔊 Sound ON";
+                    } else {
+                        video.muted = true;
+                        soundButton.textContent = "🔇 Sound OFF";
+                    }
+                });
             });
+        </script>
+    </head>
+    <body>
+        <div class="background-video-container">
+            <video id="bgVideo" class="background-video" autoplay loop muted>
+                <source src="header-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <button id="toggleSound">🔇 Sound OFF</button>
+        
+        <div class="container">
+            <div class="logo-container fade-in">
+                <img src="AH.png" alt="AH Logo" class="logo">
+                <h1>ALBA HEIDARI</h1>
+            </div>
             
-            let video = document.getElementById("bgVideo");
-            let soundButton = document.getElementById("toggleSound");
+            <hr>
+
+            <h2 class="fade-in">ABOUT</h2>
+            <p class="fade-in">Currently residing in London, Alba is a DJ first and foremost who exhibits vast open-minded versatility with all of her mixes. 
+            Growing up in Madrid, where she garnered her DJing experience, Alba Heidari has consistently sought to explore a range of different genres. With a comprehensive knowledge of drum n bass, breaks, hardcore, hardtek, electro, and even gothic industrial, she defined her technical prowess and discovered the raw industrial techno that pulls together her versatile sound.
+            Alba’s bold sound stands in sharp contrast with her modest character. Her passion for finding unknown, local, and underrated releases benefits the underground dance music community at large while the original tracks charge her DJ sets with a unique energy that defies mainstream trends.
+            </p>
             
-            soundButton.addEventListener("click", function() {
-                if (video.muted) {
-                    video.muted = false;
-                    video.volume = 0.5;
-                    soundButton.textContent = "🔊 Sound ON";
-                } else {
-                    video.muted = true;
-                    soundButton.textContent = "🔇 Sound OFF";
-                }
-            });
-        });
-    </script>
-</head>
-<body>
-    <div class="background-video-container">
-        <video id="bgVideo" class="background-video" autoplay loop muted>
-            <source src="header-video.mp4" type="video/mp4">
+            <hr>
+            
+            <h2 class="fade-in">EVENTS</h2>
+            <p class="fade-in">Check out my upcoming events on <a href="https://ra.co/dj/albaheidari/tour-dates" target="_blank">Resident Advisor</a>.</p>
+            
+            <hr>
+            
+            <h2 class="fade-in">SOME LIVE PERFORMANCES</h2>
+            <div class="fade-in">
+                <p><strong>HOR Performance:</strong> <a href="https://www.youtube.com/watch?v=D4CN-KIJroo" target="_blank">Watch on YouTube</a></p>
+                <p><strong>FOLD Residents in the LIFT:</strong> <a href="https://www.youtube.com/watch?v=SEan6PFzBZw&t=3096" target="_blank">Watch on YouTube</a></p>
+                <p><strong>Radio Interview & DJ Set:</strong> <a href="https://soundcloud.com/netil-radio/artists-without-borders-w-alba-heidari-5th-february-2025" target="_blank">Listen on SoundCloud</a></p>
+            </div>
+            
+            <hr>
+            
+            <h2 class="fade-in">CONTACT & BOOKINGS</h2>
+            <p class="fade-in">Email: <a href="mailto:albaheidari@gmail.com">albaheidari@gmail.com</a> | <a href="mailto:gemma@fold.ldn">gemma@fold.ldn</a></p>
+        </div>
+        <hr>
+
+        <h2 class="fade-in">SOUND DESIGN SHOWREEL</h2>
+        
+        <div class="fade-in" style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        <video width="100%" controls>
+            <source src="SHOWREEL.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-    </div>
-    
-    <button id="toggleSound">🔇 Sound OFF</button>
-    
-    <div class="container">
-        <div class="logo-container fade-in">
-            <img src="AH.png" alt="AH Logo" class="logo">
-            <h1>ALBA HEIDARI</h1>
+        <p style="margin-top: 10px;">SHOWREEL (2025) – Sound Design & Audio Work</p>
         </div>
-        
-        <hr>
 
-        <h2 class="fade-in">ABOUT</h2>
-        <p class="fade-in">Currently residing in London, Alba is a DJ first and foremost who exhibits vast open-minded versatility with all of her mixes. 
-        Growing up in Madrid, where she garnered her DJing experience, Alba Heidari has consistently sought to explore a range of different genres. With a comprehensive knowledge of drum n bass, breaks, hardcore, hardtek, electro, and even gothic industrial, she defined her technical prowess and discovered the raw industrial techno that pulls together her versatile sound.
-        Alba’s bold sound stands in sharp contrast with her modest character. Her passion for finding unknown, local, and underrated releases benefits the underground dance music community at large while the original tracks charge her DJ sets with a unique energy that defies mainstream trends.
-        </p>
-        
-        <hr>
-        
-        <h2 class="fade-in">EVENTS</h2>
-        <p class="fade-in">Check out my upcoming events on <a href="https://ra.co/dj/albaheidari/tour-dates" target="_blank">Resident Advisor</a>.</p>
-        
-        <hr>
-        
-        <h2 class="fade-in">SOME LIVE PERFORMANCES</h2>
-        <div class="fade-in">
-            <p><strong>HOR Performance:</strong> <a href="https://www.youtube.com/watch?v=D4CN-KIJroo" target="_blank">Watch on YouTube</a></p>
-            <p><strong>FOLD Residents in the LIFT:</strong> <a href="https://www.youtube.com/watch?v=SEan6PFzBZw&t=3096" target="_blank">Watch on YouTube</a></p>
-            <p><strong>Radio Interview & DJ Set:</strong> <a href="https://soundcloud.com/netil-radio/artists-without-borders-w-alba-heidari-5th-february-2025" target="_blank">Listen on SoundCloud</a></p>
-        </div>
-        
-        <hr>
-        
-        <h2 class="fade-in">CONTACT & BOOKINGS</h2>
-        <p class="fade-in">Email: <a href="mailto:albaheidari@gmail.com">albaheidari@gmail.com</a> | <a href="mailto:gemma@fold.ldn">gemma@fold.ldn</a></p>
-    </div>
+        <footer>
+            <p>
+              <a href="https://soundcloud.com/lemmiwinks" target="_blank">SOUNDCLOUD</a> |
+              <a href="https://www.instagram.com/alba.heidari/" target="_blank">INSTAGRAM</a> |
+              <a href="https://ra.co/dj/albaheidari" target="_blank">RESIDENT ADVISOR</a> |
+              <a href="https://www.linkedin.com/in/alba-heidari-211616113" target="_blank">LINKEDIN</a>
+            </p>
+          </footer>
 
-    <footer>
-        
-        <p>
-           <a href="https://soundcloud.com/lemmiwinks" target="_blank"> SOUNDCLOUD </a> | <a href="https://www.instagram.com/alba.heidari/" target="_blank"> INSTAGRAM </a>
-            
-        </p>
-    </footer>
-
-</body>
-</html>
+    </body>
+    </html>
